@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		springBootVersion = '2.3.2.RELEASE'
+		springBootVersion = '2.5.5'
 	}
 	repositories {
 		mavenCentral()
@@ -17,12 +17,13 @@ apply plugin: 'io.spring.dependency-management'
 
 group = 'se.magnus.microservices.composite.product'
 version = '1.0.0-SNAPSHOT'
-sourceCompatibility = 1.8
+sourceCompatibility = 11
 
 repositories {
 	mavenCentral()
 }
 
+jar.enabled = false
 
 dependencies {
 	implementation project(':api')
