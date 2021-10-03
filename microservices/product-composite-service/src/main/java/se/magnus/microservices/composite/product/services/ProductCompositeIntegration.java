@@ -88,6 +88,25 @@ public class ProductCompositeIntegration implements ProductService, Recommendati
         }
     }
 
+    @Override
+    public Product createProduct(final Product request) {
+        String url = productServiceUrl;
+        LOG.debug("Will post a new product to URL: {}", url);
+
+        Product product = restTemplate.postForObject(url, request, Product.class);
+        LOG.debug("Created a product with id: {}", product.getProductId());
+
+        return product;
+    }
+
+    @Override
+    public void deleteProduct(final Integer productId) {
+        String url = recommendationServiceUrl + "?productId=" + productId;
+        LOG.debug("Will call the deleteRecommendations API on URL: {}", url);
+
+        restTemplate.delete(url);
+    }
+
     private String getErrorMessage(HttpClientErrorException ex) {
         try {
             return mapper.readValue(ex.getResponseBodyAsString(), HttpErrorInfo.class).getMessage();
@@ -113,6 +132,24 @@ public class ProductCompositeIntegration implements ProductService, Recommendati
         }
     }
 
+    @Override
+    public Recommendation createRecommendation(final Recommendation body) {
+        String url = recommendationServiceUrl;
+        LOG.debug("Will post a new recommendation to URL: {}", url);
+
+        Recommendation recommendation = restTemplate.postForObject(url, body, Recommendation.class);
+        LOG.debug("Created a recommendation with id: {}", recommendation.getProductId());
+
+        return recommendation;
+    }
+
+    @Override
+    public void deleteRecommendations(final int productId) {
+        String url = recommendationServiceUrl + "?productId=" + productId;
+
+        restTemplate.delete(url);
+    }
+
     public List<Review> getReviews(int productId) {
 
         try {
@@ -128,5 +165,22 @@ public class ProductCompositeIntegration implements ProductService, Recommendati
             LOG.warn("Got an exception while requesting reviews, return zero reviews: {}", ex.getMessage());
             return new ArrayList<>();
         }
+    }
+
+    @Override
+    public Review createReview(final Review body) {
+        String url = reviewServiceUrl;
+        LOG.debug("Will post a new review to URL: {}", url);
+
+        Review review = restTemplate.postForObject(url, body, Review.class);
+        LOG.debug("Created a review with id: {}", review.getProductId());
+
+        return review;    }
+
+    @Override
+    public void deleteReviews(final int productId) {
+        String url = reviewServiceUrl + "?productId=" + productId;
+
+        restTemplate.delete(url);
     }
 }

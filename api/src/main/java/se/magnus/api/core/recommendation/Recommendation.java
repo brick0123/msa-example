@@ -1,12 +1,12 @@
 package se.magnus.api.core.recommendation;
 
 public class Recommendation {
-    private final int productId;
-    private final int recommendationId;
-    private final String author;
-    private final int rate;
-    private final String content;
-    private final String serviceAddress;
+    private int productId;
+    private int recommendationId;
+    private String author;
+    private int rate;
+    private String content;
+    private String serviceAddress;
 
     public Recommendation() {
         productId = 0;
@@ -48,5 +48,29 @@ public class Recommendation {
 
     public String getServiceAddress() {
         return serviceAddress;
+    }
+
+    public void setProductId(final int productId) {
+        this.productId = productId;
+    }
+
+    public void setRecommendationId(final int recommendationId) {
+        this.recommendationId = recommendationId;
+    }
+
+    public void setAuthor(final String author) {
+        this.author = author;
+    }
+
+    public void setRate(final int rate) {
+        this.rate = rate;
+    }
+
+    public void setContent(final String content) {
+        this.content = content;
+    }
+
+    public void setServiceAddress(final String serviceAddress) {
+        this.serviceAddress = serviceAddress;
     }
 }

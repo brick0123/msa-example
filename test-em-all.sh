@@ -6,7 +6,7 @@
 #
 # Sample usage:
 #
-#   HOST=localhost PORT=7000 ./test-em-all.bash
+#   HOST=localhost PORT=7000 ./test-em-all.sh
 #
 : ${HOST=localhost}
 : ${PORT=8080}
